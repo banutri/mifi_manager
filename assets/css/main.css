@@ -1,0 +1,34 @@
+.signal-indicator{
+    font-size: 90px;
+}
+
+.container{
+    width: 100% !important;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+.w-100{
+    width: 100% !important;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+.justify-content-between{
+    justify-content: space-between;
+}

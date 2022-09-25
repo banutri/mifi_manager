@@ -1,0 +1,36 @@
+{
+  "name": "py_mifi_e5773",
+  "package-name": "com.xcx.dev",
+  "app-name": "mifi_e5773s",
+  "project-type": "webview",
+  "icon": "./assets/icon/icon.png",
+  "permission": [
+    "android.permission.INTERNET"
+  ],
+  "dist-path": "./dist",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js",
+    "build": "androidjs build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "androidjs": "^2.0.4",
+    "axios": "^0.27.2",
+    "left-pad": "^1.3.0",
+    "request": "^2.88.2",
+    "socket.io": "^2.2.0"
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/banutri/mifi_manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/banutri/mifi_manager/issues"
+  },
+  "homepage": "https://github.com/banutri/mifi_manager#readme"
+}

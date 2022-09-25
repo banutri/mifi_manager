@@ -27,19 +27,33 @@ http.createServer(function (req, server_res) {
         {
             if(q.pathname=='/api/get'){
                 let params = q.query
+                // return console.log(params);
                 let url_search = q.search
                 let par_length = Object.keys(params).length;
                 if(par_length>0 && "cmd" in params){
 
-                    
-                    http.get("http://192.168.8.1/reqproc/proc_get"+url_search+"&multi_data=1", (result) => {
+                    if("multi_data" in params){
+                        http.get("http://192.168.8.1/reqproc/proc_get"+url_search+"&multi_data=1", (result) => {
                         result.on('data', (d) => {
                             server_res.write(d)
                             server_res.end()
                         });
-                    }).on('error', (e) => {
-                        server_res.end(e)
-                    });
+                        }).on('error', (e) => {
+                            server_res.end(e)
+                        });
+                    }
+                    else{
+                        http.get("http://192.168.8.1/reqproc/proc_get"+url_search, (result) => {
+                        result.on('data', (d) => {
+                            server_res.write(d)
+                            server_res.end()
+                        });
+                        }).on('error', (e) => {
+                            server_res.end(e)
+                        });
+                    }
+                    
+                    
                 }
                 else{
                     server_res.writeHead(404, {'Content-Type': 'text/html'});

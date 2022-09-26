@@ -4,6 +4,7 @@
   "app-name": "mifi_e5773s",
   "project-type": "webview",
   "icon": "./assets/icon/icon.png",
+  "screenOrientation": "portrait",
   "permission": [
     "android.permission.INTERNET"
   ],

@@ -49,6 +49,25 @@ const axios = require('axios');
 //     arr_result=[]
 // })
 // auto send data ke depan setiap 1 detik
+
+back.on('login', function(encoded_pass){
+    let login_url = "http://192.168.8.1/reqproc/proc_post?isTest=false&goformId=LOGIN&password="+encoded_pass
+    axios.post(login_url, {}).then((response) => {
+        back.send('res_login',response.data)
+      }, (error) => {
+        back.send('res_login',error)
+      });
+})
+
+back.on('logout', function(){
+    let logout_url = "http://192.168.8.1/reqproc/proc_post?isTest=false&goformId=LOGOUT"
+    axios.post(logout_url, {}).then((response) => {
+        back.send('res_logout',response.data)
+      }, (error) => {
+        back.send('res_logout',error)
+      });
+})
+
 let arr_result=[]
 setInterval(() => {
     let url_multi = "http://192.168.8.1/reqproc/proc_get?multi_data=1&cmd=realtime_tx_thrpt,ppp_status,realtime_rx_bytes,realtime_rx_thrpt,sub_network_type,SSID1,rssi,lte_rsrp,mfsw_version,mfhw_version,fw_version,MAX_Access_num,modem_main_state,sta_count,loginfo,signalbar,network_type,sub_network_type,battery_charging,battery_pers,wifi_cur_state,realtime_tx_bytes,realtime_time,imei,sim_imsi,cr_version,mcc,mnc,net_select"

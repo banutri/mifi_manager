@@ -30,11 +30,73 @@ $(document).ready(function () {
         
     })
     
-    
-    // setInterval(() => {
+    $('.btn-login').on('click',function(){
+      
+        Swal.fire({
+            title: 'Login Form',
+            html: `
+            <input type="password" id="password" class="swal2-input" placeholder="Password">`,
+            confirmButtonText: 'Sign in',
+            focusConfirm: false,
+            preConfirm: () => {
+              
+              const password = Swal.getPopup().querySelector('#password').value
+              if (!password) {
+                Swal.showValidationMessage(`Please enter password`)
+              }
+              return { password: password }
+            }
+          }).then((result) => {
+            front.send('login',btoa(result.value.password))
+            front.on('res_login',function(res){
+                console.log(res);
+                if(res.result=='failure'){
+                    Swal.fire({
+                        icon:'error',
+                        text:'Error!',
+                        heightAuto:false,
+                    })
+                }
+                else if(res.result==0){
+                    Swal.fire({
+                        icon:'success',
+                        text:'Login Berhasil!',
+                        heightAuto:false,
+                    })
+                }
+                else if(res.result>0){
+                    Swal.fire({
+                        icon:'error',
+                        text:'Password salah! sisa percobaan '+res.result+' lagi!',
+                        heightAuto:false,
+                    })
+                }
+            })
+            
+          })
+    })
+    $('.btn-logout').on('click',function(){
         
-    //     front.send('data_home');
-    // }, 1000);
+        Swal.fire({
+            title: 'Anda ingin logout?',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                front.send('logout');
+                front.on('res_logout',function(res){
+                    console.log(res);
+                    if(res.result=='success'){
+                        Swal.fire('Berhasil logout!', '', 'success')
+                    }else{
+                        Swal.fire('Gagal logout!', '', 'error')
+                    }
+                })
+              
+            } 
+          })
+    })
 
     
     
@@ -47,7 +109,8 @@ front.on('res_data_home', function(res){
     count = count+1
     $('.re-count').html(count)
     $('title').html(res.mfhw_version)
-    console.log(res);
+    // console.log(res);
+    $('.loggedin').html((res.loginfo=='ok')? 'Yes':'No')
     $('.carrier-name').html(res.network_provider)
     $('.csq_value').html(res.csq_value)
     $('.band-info').html(res.band_main)

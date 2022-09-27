@@ -12,7 +12,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="../assets/css/view.css">
-    <title>Huawei e5573</title>
+    <title>Loading...</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                             style="display: block !important;"><i class="material-icons">menu</i></a></li>
                 </ul>
                 <ul class="right">
-                    <li><span>XL Axiata</span></li>
+                    <li><span class="carrier-name">Loading...</span></li>
                     <!-- <li><i class="material-symbols-outlined">signal_cellular_0_bar</i></li>
                     <li><i class="material-symbols-outlined">signal_cellular_1_bar</i></li>
                     <li><i class="material-symbols-outlined">signal_cellular_2_bar</i></li> -->
@@ -96,8 +96,8 @@
                                 
                             </div>
                             <div class="col s6 d-flex flex-column">
-                                <h5>Data Connected</h5>
-                                <h6>Duration : 01:23:59</h6>
+                                <h5> <span class="ppp-stat"></span> </h5>
+                                <h6>Duration : <span class="duration"></span></h6>
                                 <h6>Up/Down : <span class="rl_tx"></span> MB/<span class="rl_rx"></span> MB</h6>
                                 <h6>Refresh Count : <span class="re-count"></span></h6>
                             </div>
@@ -120,14 +120,14 @@
                             <div class="col s12">
                                 <div class="row ">
                                     <div class="col s6"><d>Band : <span class="band-info"></span></d></div>
-                                    <div class="col s6"><p>Signal Strength : -109 dBm</p></div>
-                                    <div class="col s6"><p>MNC : 10</p></div>
-                                    <div class="col s6"><p>MCC : 510</p></div>
-                                    <div class="col s6"><p>Cell ID : 309914895</p></div>
-                                    <div class="col s6"><p>RSSI : -78.5 dBm</p></div>
-                                    <div class="col s6"><p>SINR : 10.2 dB</p></div>
-                                    <div class="col s6"><p>RSRP: -110 dBm</p></div>
-                                    <div class="col s6"><p>RSRQ: -10.0 dB</p></div>
+                                    <div class="col s6"><p>Signal Strength : <span class="csq_value"></span> dBm</p></div>
+                                    <div class="col s6"><p>MNC : <span class="mnc"></span> </p></div>
+                                    <div class="col s6"><p>MCC : <span class="mcc"></span></p></div>
+                                    <div class="col s6"><p>Cell ID : <span class="cellid"></span></p></div>
+                                    <div class="col s6"><p>RSSI : <span class="rssi"></span> dBm</p></div>
+                                    <div class="col s6"><p>SINR : <span class="sinr"></span> dB</p></div>
+                                    <div class="col s6"><p>LTE RSRP: <span class="lte_rsrp"></span> dBm</p></div>
+                                    <div class="col s6"><p>RSRQ: <span class="rsrq"></span> dB</p></div>
                                 </div>
                             </div>
                         </div>

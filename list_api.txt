@@ -1,33 +1,10 @@
 //// URL GET
-multi_data=1 (untuk cmd request lebih dari 1)
-modem_main_state == "modem_init_complete"
-GOFORM_GET_NET_OPER == "carrier_name" / ""
-loginfo ==  "ok" / ""
-network_provider == "T-SEL" / ""
-sta_count (client count) == "1..."
-signalbar == "1-4"
-network_type == "LTE"
-sub_network_type == "TDD_LTE"
-battery_charging == "1"
-battery_pers == "100"
-wifi_cur_state == "1" / "0"
+/// butuh login
 
-realtime_tx_bytes == "data bytes"
-realtime_rx_bytes == "data_bytes"
-realtime_time == "second uptime" // konek datanya ...
+/// multi_data =1
 realtime_tx_thrpt == "bytes?"
 realtime_rx_thrpt == "bytes?"
-imei == "112121212"
-sim_imsi = "510106090776458"
-"cr_version": "7520V3SCSDKV2.01.01.02P24",
-mcc: "510"
-mnc: "10"
-GOFORM_GET_ZICCID_INFO = ziccid: "8962100760907764584"
-net_select
-get_band_info = {"band_act":"3","band_main":"40"}
-
-
-/// butuh login
+sub_network_type == "TDD_LTE"
 SSID1 == "SSID UTAMA"
 "rssi": "-98",
 "lte_rsrp": "-98",
@@ -35,6 +12,34 @@ SSID1 == "SSID UTAMA"
 "mfhw_version": "E5573_V1.2",
   "fw_version": "E5573",
   "MAX_Access_num": "4",
+
+
+
+/// tanpa login /////
+/// multi_data =1
+realtime_tx_bytes == "data bytes"
+ppp_status == ppp_diskonek ppp_konek
+realtime_rx_bytes == "data_bytes"
+realtime_time == "second uptime" // konek datanya ...
+modem_main_state == "modem_init_complete"
+loginfo ==  "ok" / ""
+sta_count (client count) == "1..."
+signalbar == "1-4"
+network_type == "LTE"
+battery_charging == "1"
+battery_pers == "100"
+wifi_cur_state == "1" / "0"
+imei == "112121212"
+sim_imsi = "510106090776458"
+"cr_version": "7520V3SCSDKV2.01.01.02P24",
+mcc: "510"
+mnc: "10"
+net_select = "Only LTE"
+
+/// multi data  =0
+GOFORM_GET_NET_OPER == "carrier_name" / ""
+GOFORM_GET_ZICCID_INFO = ziccid: "8962100760907764584"
+get_band_info = {"band_act":"3","band_main":"40"}
 
 //// URL POST
 goformId=LOGIN&password=YWRtaW4xMjM= {"result":"0"} base64

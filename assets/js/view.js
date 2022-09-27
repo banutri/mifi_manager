@@ -27,59 +27,45 @@ $(document).ready(function () {
 
     $('.btn-pwr').on('click',function(){
         console.log('clicked!');
-        get_home_info()
-        
-       
         
     })
     
-    let count = 0
-
-    get_home_info()
-    setInterval(() => {
-        $('.re-count').html(count)
-        count = count+1
-        get_home_info()
-    }, 1000);
+    
+    // setInterval(() => {
+        
+    //     front.send('data_home');
+    // }, 1000);
 
     
     
 });
 
-function get_home_info(){
-    let cmd_list_multi = ['signalbar','network_type','realtime_tx_bytes','realtime_rx_bytes']
 
-    
+// ketika data home datang...
+let count=0
+front.on('res_data_home', function(res){
+    count = count+1
+    $('.re-count').html(count)
+    $('title').html(res.mfhw_version)
+    console.log(res);
+    $('.carrier-name').html(res.network_provider)
+    $('.csq_value').html(res.csq_value)
+    $('.band-info').html(res.band_main)
+    $('.mnc').html(res.mnc)
+    $('.mcc').html(res.mcc)
+    $('.cellid').html(res.cellid)
+    $('.rssi').html(res.rssi)
+    $('.sinr').html(res.sinr)
+    $('.lte_rsrp').html(res.lte_rsrp)
+    $('.rsrq').html(res.rsrq)
+    $('.ppp-stat').html((res.ppp_status=='ppp_disconnected')?'Data Not Connected' :'Data Connected')
+    $('.duration').html(moment.utc(res.realtime_time*1000).format('HH:mm:ss'))
+    $('.rl_tx').html(angka_koma(Math.round(res.realtime_tx_bytes/1000000)))
+    $('.rl_rx').html(angka_koma(Math.round(res.realtime_rx_bytes/1000000)))
 
-        // get opsel
-    front.send('api_get', 0,'GOFORM_GET_NET_OPER');
-        front.on('results', function(res){
-            $('.carrier-name').html(res.network_provider)
-            return
-        })
+})
 
-        // get band info
-        front.send('api_get',0,'get_band_info');
-        front.on('results',function(res){
-            $('.band-info').html(res.band_main)
-            return
-        })
 
-        front.send('api_get', 1,cmd_list_multi);
-        front.on('results', function(res){
-            let tx = parseInt(res.realtime_tx_bytes)
-            let rx = parseInt(res.realtime_rx_bytes)
-            
-            $('.rl_tx').html(angka_koma(Math.round(tx/1000000)))
-            $('.rl_rx').html(angka_koma(Math.round(rx/1000000)))
-            // $('.rl_tx').html(tx)
-            // $('.rl_rx').html(rx)
-            return
-        })
-
-    return
-    
-}
 
 function angka_koma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
